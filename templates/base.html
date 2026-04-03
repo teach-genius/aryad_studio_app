@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}ARYAD{% endblock %}">
+  <title>{% block title %}ARYAD — Intelligence Artificielle & Architecture Logicielle{% endblock %}</title>
+
+  {% load static %}
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'css/aryad.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  {% include "partials/_navbar.html" %}
+  {% include "partials/_mobile_menu.html" %}
+
+  <main id="main-content" style="overflow-x: hidden;">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "partials/_footer.html" %}
+  <script>
+    window.ARYAD_CONFIG = {
+      botAvatarUrl: "{% static 'imgs/bot.png' %}",
+    };
+  </script>
+
+  <!-- Global JS -->
+  <script src="{% static 'js/aryad.js' %}"></script>
+  <script src="{% static 'js/visitor.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

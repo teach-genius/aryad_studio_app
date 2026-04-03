@@ -1,0 +1,579 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ARYAD — Intelligence Artificielle & Architecture Logicielle{% endblock %}
+
+{% block meta_description %}ARYAD conçoit et déploie des systèmes d'intelligence artificielle sur mesure — modélisation, architecture logicielle, applications web & mobile pour PME et grandes entreprises.{% endblock %}
+
+{% block content %}
+{% load static %}
+<section id="hero" aria-label="Section principale">
+
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="hero-gradient" aria-hidden="true"></div>
+
+  <div class="glow-ring"
+       style="width:600px;height:600px;top:-200px;left:-100px;opacity:0.4;"
+       aria-hidden="true"></div>
+  <div class="glow-ring"
+       style="width:400px;height:400px;bottom:-100px;right:-50px;
+              background:radial-gradient(circle,rgba(124,79,255,0.1) 0%,transparent 70%);
+              animation-delay:-4s;"
+       aria-hidden="true"></div>
+
+  <div class="hero-badge" aria-label="Statut : disponible pour de nouveaux projets">
+    <span class="dot" aria-hidden="true"></span>
+    Disponible pour de nouveaux projets
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line-thin">Intelligence artificielle</span><br>
+    <span class="grad-text">&amp; architecture</span><br>
+    <span class="line-outline">logicielle</span>
+  </h1>
+
+  <p class="hero-sub">
+    ARYAD conçoit et déploie des systèmes d'intelligence artificielle sur mesure —
+    de la modélisation à la mise en production.
+    Pour les entreprises qui veulent prendre une longueur d'avance.
+  </p>
+
+  <div class="hero-cta" role="group" aria-label="Actions principales">
+    <a href="#solutions" class="cta-primary">
+      Explorer les solutions
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a href="#cta" class="cta-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg>
+      Collaborer avec nous
+    </a>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    Défiler
+    <div class="scroll-line"></div>
+  </div>
+
+</section>
+
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    {% for item in marquee_items %}
+      <span class="marquee-item"><span class="marquee-dot"></span>{{ item }}</span>
+    {% endfor %}
+    {# Duplicate for seamless infinite loop #}
+    {% for item in marquee_items %}
+      <span class="marquee-item"><span class="marquee-dot"></span>{{ item }}</span>
+    {% endfor %}
+  </div>
+</div>
+
+<section id="about" aria-labelledby="about-title">
+  <div class="container">
+    <div class="about-grid">
+
+      {# Left column — texte #}
+      <div class="reveal">
+        <p class="section-eyebrow">À propos d'ARYAD</p>
+        <h2 class="section-title" id="about-title">
+          Un studio IA<br>
+          de nouvelle<br>
+          génération.
+        </h2>
+        <p class="section-body">
+          ARYAD est un studio spécialisé en intelligence artificielle et architecture logicielle.
+          Nous concevons des systèmes intelligents pensés pour durer — robustes, scalables,
+          et alignés sur les objectifs métier de nos clients.
+        </p>
+        <p class="section-body" style="margin-top:1rem;">
+          De la modélisation de modèles IA personnalisés à leur intégration dans des applications
+          critiques, nous intervenons à chaque étape du cycle de développement avec exigence
+          et orientation résultats.
+        </p>
+        <div class="pills" role="list" aria-label="Domaines d'expertise">
+          <span class="pill" role="listitem">Modèles IA sur mesure</span>
+          <span class="pill" role="listitem">Architecture logicielle</span>
+          <span class="pill" role="listitem">R&amp;D appliquée</span>
+          <span class="pill" role="listitem">Solutions entreprise</span>
+          <span class="pill" role="listitem">Sous-traitance technique</span>
+          <span class="pill" role="listitem">Web &amp; Mobile</span>
+        </div>
+      </div>
+
+      {# Right column — Trust cards #}
+      <div class="reveal" style="transition-delay:0.15s;">
+        <div class="trust-grid" role="list" aria-label="Profils clients">
+
+          <div class="trust-card" role="listitem">
+            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M9 8l1 0" /><path d="M9 12l1 0" /><path d="M9 16l1 0" /><path d="M14 8l1 0" /><path d="M14 12l1 0" /><path d="M14 16l1 0" /><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" /></svg></span>
+            <div class="trust-title">PME &amp; ETI</div>
+            <p class="trust-desc">
+              Automatisation, outils IA intégrés et solutions sur mesure
+              pour les entreprises en croissance.
+            </p>
+          </div>
+
+          <div class="trust-card" role="listitem">
+            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M3.6 9h16.8" /><path d="M3.6 15h16.8" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a17 17 0 0 1 0 18" /></svg></span>
+            <div class="trust-title">Grandes entreprises</div>
+            <p class="trust-desc">
+              Architecture IA à l'échelle, intégration dans des systèmes complexes
+              et accompagnement stratégique.
+            </p>
+          </div>
+
+          <div class="trust-card" role="listitem">
+            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg></span>
+            <div class="trust-title">Partenaires tech</div>
+            <p class="trust-desc">
+              Sous-traitance technique, renfort d'équipes et expertise IA
+              pour agences et ESN.
+            </p>
+          </div>
+
+          <div class="trust-card" role="listitem">
+            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-air-balloon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 20a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -1" /><path d="M12 16c3.314 0 6 -4.686 6 -8a6 6 0 1 0 -12 0c0 3.314 2.686 8 6 8" /><path d="M10 9a2 7 0 1 0 4 0a2 7 0 1 0 -4 0" /></svg></span>
+            <div class="trust-title">Startups &amp; scale-ups</div>
+            <p class="trust-desc">
+              Du proof of concept au déploiement production —
+              vitesse d'exécution et excellence technique.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="solutions" aria-labelledby="solutions-title">
+  <div class="container">
+
+    <div class="reveal">
+      <p class="section-eyebrow">Solutions</p>
+      <h2 class="section-title" id="solutions-title">
+        Ce que nous construisons<br>pour votre entreprise
+      </h2>
+    </div>
+
+    <div class="solutions-grid" role="list" aria-label="Liste des solutions">
+
+      <div class="solution-card reveal" role="listitem" style="transition-delay:0.05s;">
+        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brain"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg></div>
+        <div class="solution-title">AryadRH</div>
+        <p class="solution-desc">
+          Logiciel de gestion des ressources humaines augmenté par l'IA.
+          Recrutement prédictif, analyse des performances, automatisation des processus RH.
+        </p>
+        <span class="solution-tag">Produit phare →</span>
+      </div>
+
+      <div class="solution-card reveal" role="listitem" style="transition-delay:0.10s;">
+        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings-ai"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" /><path d="M9 14v-2.5a1.5 1.5 0 0 1 3 0v2.5" /><path d="M9 13h3" /><path d="M15 10v4" /></svg></div>
+        <div class="solution-title">Modèles d'IA personnalisés</div>
+        <p class="solution-desc">
+          Conception et entraînement de modèles sur mesure — classification, génération,
+          prédiction — adaptés à vos données et objectifs métier.
+        </p>
+        <span class="solution-tag">Sur mesure →</span>
+      </div>
+
+      <div class="solution-card reveal" role="listitem" style="transition-delay:0.15s;">
+        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-automatic-gearbox"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17v4h1a2 2 0 1 0 0 -4h-1" /><path d="M17 11h1.5a1.5 1.5 0 0 0 0 -3h-1.5v5" /><path d="M3 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 7v3a1 1 0 0 0 1 1h3v7a1 1 0 0 0 1 1h3" /><path d="M9 11h4" /></svg></div>
+        <div class="solution-title">Automatisation intelligente</div>
+        <p class="solution-desc">
+          Identification et automatisation des processus métier à fort potentiel
+          via des agents IA, workflows intelligents et intégrations système.
+        </p>
+        <span class="solution-tag">Process AI →</span>
+      </div>
+
+      <div class="solution-card reveal" role="listitem" style="transition-delay:0.20s;">
+        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-html5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5l16 0" /><path d="M15.5 8h-7l.5 4h6l-.5 3.5l-2.5 .75l-2.5 -.75l-.1 -.5" /></svg></div>
+        <div class="solution-title">Applications Web &amp; Mobile</div>
+        <p class="solution-desc">
+          Développement fullstack d'applications performantes, intégrant des capacités IA
+          nativement — de l'interface utilisateur à l'infrastructure cloud.
+        </p>
+        <span class="solution-tag">Fullstack AI →</span>
+      </div>
+
+      <div class="solution-card reveal" role="listitem" style="transition-delay:0.25s;">
+        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-microscope"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg></div>
+        <div class="solution-title">Conseil &amp; R&amp;D en IA</div>
+        <p class="solution-desc">
+          Accompagnement stratégique dans la définition de votre feuille de route IA,
+          évaluation de faisabilité, proof of concept et transfert de compétences.
+        </p>
+        <span class="solution-tag">Stratégie →</span>
+      </div>
+
+      <div class="solution-card reveal" role="listitem" style="transition-delay:0.30s;">
+        <div class="solution-icon"
+             style="background:var(--accent-glow);border-color:rgba(79,127,255,0.3);"
+             aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg></div>
+        <div class="solution-title">Sous-traitance technique</div>
+        <p class="solution-desc">
+          Intervention en tant que CTO externalisé ou lead technique IA pour renforcer
+          vos équipes sur des projets critiques et complexes.
+        </p>
+        <span class="solution-tag">Partenariat →</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="product" aria-labelledby="product-title">
+  <div class="container">
+    <div class="product-grid">
+
+      {# Left — texte #}
+      <div class="product-text reveal">
+        <p class="section-eyebrow">Produit phare</p>
+        <h2 class="section-title" id="product-title">
+          AryadRH —<br>
+          La RH augmentée<br>
+          <span class="grad-text">par l'intelligence artificielle.</span>
+        </h2>
+        <p class="section-body">
+          AryadRH transforme la gestion des ressources humaines en intégrant des modèles
+          d'IA directement dans les processus RH — du recrutement prédictif à l'analyse
+          des performances en temps réel.
+        </p>
+        <ul class="product-features" aria-label="Fonctionnalités clés">
+          <li><span class="pf-dot" aria-hidden="true"></span>Recrutement prédictif par matching IA</li>
+          <li><span class="pf-dot" aria-hidden="true"></span>Analyse des performances &amp; détection des talents</li>
+          <li><span class="pf-dot" aria-hidden="true"></span>Automatisation des processus administratifs RH</li>
+          <li><span class="pf-dot" aria-hidden="true"></span>Tableaux de bord intelligents &amp; reporting avancé</li>
+          <li><span class="pf-dot" aria-hidden="true"></span>Intégration native avec vos outils existants</li>
+        </ul>
+        <div class="product-cta">
+          <a href="#cta" class="cta-primary" style="font-size:0.875rem;padding:0.75rem 1.5rem;">
+            Demander une démo
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <span class="product-badge">Disponible maintenant</span>
+        </div>
+      </div>
+
+      <div class="product-visual reveal" style="transition-delay:0.15s;">
+        <div class="product-mockup">
+          <div class="mockup-bar" aria-hidden="true">
+            <span class="mockup-dot mockup-dot--red"></span>
+            <span class="mockup-dot mockup-dot--yellow"></span>
+            <span class="mockup-dot mockup-dot--green"></span>
+            <span class="mockup-url">app.aryad.ai/rh/dashboard</span>
+          </div>
+          <div class="mockup-screen">
+
+            {# {% load static %}                                        #}
+            {# <img src="{% static 'img/aryad-rh-screenshot.png' %}" #}
+            {#      alt="Interface AryadRH"                             #}
+            {#      class="mockup-img" loading="lazy">                  #}
+
+            <div class="mock-ui">
+              <div class="mock-sidebar">
+                <div class="mock-logo-sm"></div>
+                <div class="mock-nav-items">
+                  <div class="mock-nav-item mock-nav-item--active"></div>
+                  <div class="mock-nav-item"></div>
+                  <div class="mock-nav-item"></div>
+                  <div class="mock-nav-item"></div>
+                  <div class="mock-nav-item"></div>
+                </div>
+              </div>
+              <div class="mock-main">
+                <div class="mock-header">
+                  <div class="mock-title-bar"></div>
+                  <div class="mock-actions">
+                    <div class="mock-btn"></div>
+                    <div class="mock-btn mock-btn--primary"></div>
+                  </div>
+                </div>
+                <div class="mock-kpis">
+                  <div class="mock-kpi"><div class="mock-kpi-val"></div><div class="mock-kpi-lbl"></div></div>
+                  <div class="mock-kpi"><div class="mock-kpi-val"></div><div class="mock-kpi-lbl"></div></div>
+                  <div class="mock-kpi"><div class="mock-kpi-val"></div><div class="mock-kpi-lbl"></div></div>
+                  <div class="mock-kpi"><div class="mock-kpi-val"></div><div class="mock-kpi-lbl"></div></div>
+                </div>
+                <div class="mock-charts">
+                  <div class="mock-chart-big">
+                    <div class="mock-chart-head"></div>
+                    <div class="mock-bars">
+                      <div class="mock-bar" style="height:55%"></div>
+                      <div class="mock-bar" style="height:80%"></div>
+                      <div class="mock-bar" style="height:45%"></div>
+                      <div class="mock-bar" style="height:90%"></div>
+                      <div class="mock-bar" style="height:65%"></div>
+                      <div class="mock-bar" style="height:75%"></div>
+                      <div class="mock-bar mock-bar--accent" style="height:95%"></div>
+                    </div>
+                  </div>
+                  <div class="mock-chart-small">
+                    <div class="mock-chart-head"></div>
+                    <div class="mock-table">
+                      <div class="mock-row"></div>
+                      <div class="mock-row"></div>
+                      <div class="mock-row"></div>
+                      <div class="mock-row mock-row--accent"></div>
+                      <div class="mock-row"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="product-glow" aria-hidden="true"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="process" aria-labelledby="process-title">
+  <div class="container">
+
+    <div class="reveal" style="text-align:center;">
+      <p class="section-eyebrow" style="justify-content:center;">
+        Processus
+      </p>
+      <h2 class="section-title" id="process-title">Comment nous travaillons</h2>
+      <p class="section-body" style="margin:0 auto;">
+        Un processus structuré, de la compréhension du besoin à la mise en production
+        — sans approximation.
+      </p>
+    </div>
+
+    <div class="process-steps" role="list" aria-label="Étapes du processus">
+
+      <div class="process-step reveal" role="listitem" style="transition-delay:0.05s;">
+        <div class="step-num" aria-label="Étape 1">01</div>
+        <div class="step-title">Découverte</div>
+        <p class="step-desc">
+          Analyse du contexte, des objectifs métier et des contraintes techniques.
+          Alignement stratégique.
+        </p>
+      </div>
+
+      <div class="process-step reveal" role="listitem" style="transition-delay:0.10s;">
+        <div class="step-num" aria-label="Étape 2">02</div>
+        <div class="step-title">Architecture</div>
+        <p class="step-desc">
+          Conception de l'architecture système, choix technologiques
+          et planification des composants IA.
+        </p>
+      </div>
+
+      <div class="process-step reveal" role="listitem" style="transition-delay:0.15s;">
+        <div class="step-num" aria-label="Étape 3">03</div>
+        <div class="step-title">Modélisation IA</div>
+        <p class="step-desc">
+          Développement, entraînement et évaluation des modèles d'IA
+          sur vos données réelles.
+        </p>
+      </div>
+
+      <div class="process-step reveal" role="listitem" style="transition-delay:0.20s;">
+        <div class="step-num" aria-label="Étape 4">04</div>
+        <div class="step-title">Développement</div>
+        <p class="step-desc">
+          Intégration des modèles dans les applications, développement
+          des interfaces et des APIs.
+        </p>
+      </div>
+
+      <div class="process-step reveal" role="listitem" style="transition-delay:0.25s;">
+        <div class="step-num" aria-label="Étape 5">05</div>
+        <div class="step-title">Déploiement &amp; Scale</div>
+        <p class="step-desc">
+          Mise en production cloud, monitoring, optimisation continue
+          et montée en charge.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="technologies" aria-labelledby="tech-title">
+  <div class="container">
+
+    <div class="reveal">
+      <p class="section-eyebrow">Stack technique</p>
+      <h2 class="section-title" id="tech-title">Technologies</h2>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.1s;">
+
+      <div class="tech-categories" role="group" aria-label="Filtrer par catégorie">
+        {% if technologies %}
+        {% for cat in technologies.categories %}
+        <button class="tech-cat-btn {% if cat.key == 'all' %} active {% endif%}"
+                onclick="filterTech('{{cat.key}}', this)"
+                aria-pressed="true">{{cat.label}}</button>
+        {% endfor %}
+        {% endif%}
+      </div>
+
+      <div class="tech-grid" id="techGrid" role="list" aria-label="Technologies">
+        {% if technologies %}
+        {% for tech in technologies.items %}
+        <div class="tech-item reveal" data-cat="{{tech.cat}}" role="listitem" style="transition-delay:0.05s;">
+          <div class="tech-icon-wrap" aria-hidden="true"><img height="100%" style="object-fit: contain;" src="{{tech.icon.url}}" alt="" srcset=""></div>
+          <div class="tech-name">{{tech.name}}</div>
+        </div>
+        {% endfor %}
+        {% endif%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-block reveal">
+
+      <p class="section-eyebrow" style="justify-content:center;">
+        Travaillons ensemble
+      </p>
+
+      <h2 class="section-title" id="cta-title">
+        Construisons ensemble des systèmes intelligents
+        qui transforment votre entreprise.
+      </h2>
+
+      <p class="section-body">
+        Vous avez un projet ambitieux ou un défi métier à résoudre par l'IA ?
+        Discutons-en et explorons les opportunités ensemble.
+      </p>
+
+      <br>
+
+      <a href="mailto:aryadacademie@gmail.com"
+         class="cta-big"
+         aria-label="Planifier un appel stratégique par email">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M2 4.5A1.5 1.5 0 013.5 3h11A1.5 1.5 0 0116 4.5v9a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 012 13.5v-9z"
+                stroke="currentColor" stroke-width="1.4"/>
+          <path d="M2 5l7 5.5L16 5" stroke="currentColor" stroke-width="1.4"/>
+        </svg>
+        Planifier un appel stratégique
+      </a>
+
+      <p class="cta-note">Réponse sous 24h · Première consultation gratuite</p>
+
+    </div>
+  </div>
+</section>
+
+<button class="scroll-top" id="scrollTop" aria-label="Retour en haut de page" title="Retour en haut">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M9 14V4M4 8l5-5 5 5" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<div class="chatbot-wrapper" id="chatbotWrapper" aria-live="polite">
+
+  <button class="chatbot-toggle" id="chatbotToggle"
+          aria-label="Ouvrir le chat" aria-expanded="false"
+          aria-controls="chatbotPanel">
+    <span class="chatbot-toggle-icon chatbot-toggle-icon--open" aria-hidden="true">
+      <div style="height: 22px;width: 22px;">
+            <img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset="">
+          </div>
+    </span>
+    <span class="chatbot-toggle-icon chatbot-toggle-icon--close" aria-hidden="true" style="display:none;">
+      <div style="height: 32px;display: flex;align-items: center;">
+        <img height="100%" style="object-fit: contain;" src="{% static 'imgs/symbole-aryad.png' %}" alt="" srcset="">
+      </div>
+    </span>
+    <span class="chatbot-label">Aryad AI</span>
+    <span class="chatbot-notif" aria-hidden="true"></span>
+  </button>
+
+  <div class="chatbot-panel" id="chatbotPanel" role="dialog"
+       aria-label="Assistant ARYAD" aria-modal="false" hidden>
+
+    <div class="chatbot-header">
+      <div class="chatbot-header-info">
+        <div class="chatbot-avatar" aria-hidden="true">
+          <div style="height: 32px;width: 32px;">
+            <img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset="">
+          </div>
+        </div>
+        <div>
+          <div class="chatbot-name">Assistant ARYAD</div>
+          <div class="chatbot-status">
+            <span class="chatbot-status-dot" aria-hidden="true"></span>
+            En ligne
+          </div>
+        </div>
+      </div>
+      <button class="chatbot-close" id="chatbotClose" aria-label="Fermer le chat">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="chatbot-messages" id="chatbotMessages" role="log" aria-label="Conversation">
+      <div class="chatbot-msg chatbot-msg--bot">
+        <div class="chatbot-msg-avatar" aria-hidden="true">
+            <div style="height: 24px;width: 24px;">
+            <img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset="">
+          </div>
+        </div>
+        <div class="chatbot-msg-bubble">
+          Bonjour 👋 Je suis l'assistant ARYAD.<br>
+          Comment puis-je vous aider aujourd'hui ?
+        </div>
+      </div>
+      <div class="chatbot-suggestions" id="chatbotSuggestions" aria-label="Suggestions">
+        <button class="chatbot-chip" onclick="sendSuggestion(this)">Voir les solutions IA</button>
+        <button class="chatbot-chip" onclick="sendSuggestion(this)">Planifier un appel</button>
+        <button class="chatbot-chip" onclick="sendSuggestion(this)">En savoir plus sur AryadRH</button>
+      </div>
+    </div>
+
+    <div class="chatbot-input-wrap">
+      <input
+        type="text"
+        id="chatbotInput"
+        class="chatbot-input"
+        placeholder="Écrivez votre message..."
+        aria-label="Message"
+        autocomplete="off"
+        maxlength="300"
+      >
+      <button class="chatbot-send" id="chatbotSend" aria-label="Envoyer">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M14 2L2 7l5 1.5L8.5 14 14 2z"
+                stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}
