@@ -1,11 +1,27 @@
 <!DOCTYPE html>
+{% load static %}
+ {% load csp %}
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{% block meta_description %}ARYAD{% endblock %}">
   <title>{% block title %}ARYAD — Intelligence Artificielle & Architecture Logicielle{% endblock %}</title>
-
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="fr">
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <link rel="icon" href="{% static 'imgs/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'imgs/logo.svg' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CSGRIA - Intelligence Artificielle au Gabon">
+    <meta property="og:description" content="Recherche et innovation en intelligence artificielle, data science et technologie en Afrique.">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'imgs/logo.svg' %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CSGRIA - IA au Gabon">
+    <meta name="twitter:description" content="Recherche et innovation en intelligence artificielle et data science en Afrique.">
+    <meta name="twitter:image" content="{% static 'imgs/logo.svg' %}">
+    
   {% load static %}
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +31,16 @@
   <!-- Global CSS -->
   <link rel="stylesheet" href="{% static 'css/aryad.css' %}">
   {% block extra_css %}{% endblock %}
+  <script type="application/ld+json" nonce="{{ request.csp_nonce }}">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "aryadstudio",
+      "url": "{{ request.build_absolute_uri }}",
+      "description": "Comité de recherche sur l'intelligence artificielle au Gabon",
+      "sameAs": []
+    }
+    </script>
 </head>
 <body>
 
