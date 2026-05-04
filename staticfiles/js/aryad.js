@@ -8,10 +8,11 @@
   const mouse = { x: -9999, y: -9999 };
 
   function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-
+  const w = canvas.offsetWidth;
+  const h = canvas.offsetHeight;
+  W = canvas.width  = w;
+  H = canvas.height = h;
+}
   function createNodes(count) {
     nodes = [];
     for (let i = 0; i < count; i++) {
@@ -29,9 +30,9 @@
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    const isDark     = document.documentElement.getAttribute('data-theme') !== 'light';
-    const nodeColor  = isDark ? '180,200,255' : '79,127,255';
-    const lineColor  = isDark ? '100,140,255' : '79,127,255';
+    const isDark    = document.documentElement.getAttribute('data-theme') !== 'light';
+    const nodeColor = isDark ? '180,200,255' : '79,127,255';
+    const lineColor = isDark ? '100,140,255' : '79,127,255';
 
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
@@ -94,12 +95,13 @@
   window.addEventListener('resize', () => {
     resize();
     createNodes(60);
-  });
+  }, { passive: true });
 
   resize();
   createNodes(60);
   draw();
 })();
+
 
 (function initReveal() {
   const observer = new IntersectionObserver((entries) => {
@@ -114,6 +116,7 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();
 
+
 (function initThemeToggle() {
   const btn  = document.getElementById('themeToggle');
   const html = document.documentElement;
@@ -121,22 +124,21 @@
 
   if (!btn) return;
 
+  const SVG_MOON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z" /></svg>`;
+  const SVG_SUN  = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brightness-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 8a4 4 0 1 1 -3.995 4.2l-.005 -.2l.005 -.2a4 4 0 0 1 3.995 -3.8z" /><path d="M12 4a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M17 6a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M19 11a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M17 16a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M12 18a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M7 16a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M5 11a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M7 6a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /></svg>`;
+
   const saved = localStorage.getItem('aryad-theme');
   if (saved) {
     html.setAttribute('data-theme', saved);
-    btn.innerHTML = saved === 'dark' ? `
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z" /></svg>
-    ` : `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brightness-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 8a4 4 0 1 1 -3.995 4.2l-.005 -.2l.005 -.2a4 4 0 0 1 3.995 -3.8z" /><path d="M12 4a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M17 6a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M19 11a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M17 16a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M12 18a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M7 16a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M5 11a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M7 6a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /></svg>`;
+    btn.innerHTML = saved === 'dark' ? SVG_MOON : SVG_SUN;
   }
 
   btn.addEventListener('click', () => {
-    const isDark  = html.getAttribute('data-theme') === 'dark';
+    const isDark   = html.getAttribute('data-theme') === 'dark';
     const newTheme = isDark ? 'light' : 'dark';
 
     html.setAttribute('data-theme', newTheme);
-    btn.innerHTML = isDark ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brightness-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 8a4 4 0 1 1 -3.995 4.2l-.005 -.2l.005 -.2a4 4 0 0 1 3.995 -3.8z" /><path d="M12 4a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M17 6a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M19 11a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M17 16a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M12 18a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M7 16a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M5 11a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /><path d="M7 6a1 1 0 0 1 .993 .883l.007 .127a1 1 0 0 1 -1.993 .117l-.007 -.127a1 1 0 0 1 1 -1z" /></svg>` : `
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z" /></svg>
-    `;
+    btn.innerHTML = isDark ? SVG_SUN : SVG_MOON;
     localStorage.setItem('aryad-theme', newTheme);
 
     if (nav) {
@@ -146,6 +148,7 @@
     }
   });
 })();
+
 
 (function initMobileMenu() {
   const hamburger  = document.getElementById('hamburger');
@@ -181,6 +184,7 @@
   });
 })();
 
+
 window.filterTech = function filterTech(cat, clickedBtn) {
   document.querySelectorAll('.tech-cat-btn').forEach(btn => {
     btn.classList.remove('active');
@@ -198,22 +202,30 @@ window.filterTech = function filterTech(cat, clickedBtn) {
   });
 };
 
+
 (function initScrollSpy() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 
+  // offsetTop mis en cache — évite le reflow forcé dans le scroll handler
+  let sectionTops = [];
+  function cacheSections() {
+    sectionTops = Array.from(sections).map(s => ({
+      id:  s.id,
+      top: s.offsetTop,
+    }));
+  }
+  cacheSections();
+  window.addEventListener('resize', cacheSections, { passive: true });
+
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 90) current = s.id;
+    sectionTops.forEach(s => {
+      if (window.scrollY >= s.top - 90) current = s.id;
     });
     navLinks.forEach(a => {
       const href = a.getAttribute('href') || '';
-      if (href.includes('#' + current)) {
-        a.style.color = 'var(--text-primary)';
-      } else {
-        a.style.color = '';
-      }
+      a.style.color = href.includes('#' + current) ? 'var(--text-primary)' : '';
     });
   }, { passive: true });
 })();
@@ -221,203 +233,18 @@ window.filterTech = function filterTech(cat, clickedBtn) {
 
 (function initScrollTop() {
   const btn = document.getElementById('scrollTop');
-  const trigger = document.getElementById('cta');
-  if (!btn || !trigger) return;
+  if (!btn) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        btn.classList.add('visible');
-      } else {
-        if (window.scrollY < trigger.offsetTop) {
-          btn.classList.remove('visible');
-        }
-      }
-    });
-  }, { threshold: 0.1 });
-
-  observer.observe(trigger);
+  // Bouton "retour en haut" visible après 300px de scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, { passive: true });
 
   btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-})();
-
-(function initChatbot() {
-  const wrapper   = document.getElementById('chatbotWrapper');
-  const toggle    = document.getElementById('chatbotToggle');
-  const panel     = document.getElementById('chatbotPanel');
-  const closeBtn  = document.getElementById('chatbotClose');
-  const input     = document.getElementById('chatbotInput');
-  const sendBtn   = document.getElementById('chatbotSend');
-  const messages  = document.getElementById('chatbotMessages');
-  const suggestions = document.getElementById('chatbotSuggestions');
-  const iconOpen  = toggle ? toggle.querySelector('.chatbot-toggle-icon--open')  : null;
-  const iconClose = toggle ? toggle.querySelector('.chatbot-toggle-icon--close') : null;
-  const trigger   = document.getElementById('cta');
-
-  if (!wrapper || !trigger) return;
-
-  let isPanelOpen = false;
-
-  const visibilityObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        wrapper.classList.add('visible');
-      } else {
-        if (window.scrollY < trigger.offsetTop) {
-          wrapper.classList.remove('visible');
-        }
-      }
-    });
-  }, { threshold: 0.1 });
-
-  visibilityObserver.observe(trigger);
-
-  function openPanel() {
-    isPanelOpen = true;
-    panel.hidden = false;
-    toggle.setAttribute('aria-expanded', 'true');
-    if (iconOpen)  iconOpen.style.display  = 'none';
-    if (iconClose) iconClose.style.display = '';
-    if (input) input.focus();
-    scrollMessages();
-    const notif = toggle.querySelector('.chatbot-notif');
-    if (notif) notif.style.display = 'none';
-  }
-
-  function closePanel() {
-    isPanelOpen = false;
-    panel.hidden = true;
-    toggle.setAttribute('aria-expanded', 'false');
-    if (iconOpen)  iconOpen.style.display  = '';
-    if (iconClose) iconClose.style.display = 'none';
-  }
-
-  if (toggle)   toggle.addEventListener('click', () => isPanelOpen ? closePanel() : openPanel());
-  if (closeBtn) closeBtn.addEventListener('click', closePanel);
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && isPanelOpen) closePanel();
-  });
-
-  function scrollMessages() {
-    if (messages) {
-      setTimeout(() => {
-        messages.scrollTop = messages.scrollHeight;
-      }, 50);
-    }
-  }
-
-  function appendMessage(text, role) {
-    if (role === 'user' && suggestions) {
-      suggestions.style.display = 'none';
-    }
-
-    const msg = document.createElement('div');
-    msg.className = `chatbot-msg chatbot-msg--${role}`;
-
-    if (role === 'bot') {
-      const avatar = document.createElement('div');
-      avatar.className = 'chatbot-msg-avatar';
-      avatar.setAttribute('aria-hidden', 'true');
-      avatar.innerHTML = `
-    <div style="height: 24px;width: 24px;"><img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset=""></div>
-    `;
-      msg.appendChild(avatar);
-    }
-
-    const bubble = document.createElement('div');
-    bubble.className = 'chatbot-msg-bubble';
-    bubble.innerHTML = text;
-    msg.appendChild(bubble);
-
-    messages.appendChild(msg);
-    scrollMessages();
-  }
-
-  function showTyping() {
-    const typing = document.createElement('div');
-    typing.className = 'chatbot-typing';
-    typing.id = 'typingIndicator';
-
-    const avatar = document.createElement('div');
-    avatar.className = 'chatbot-msg-avatar';
-    avatar.setAttribute('aria-hidden', 'true');
-    avatar.innerHTML = `
-    <div style="height: 24px;width: 24px;"><img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset=""></div>
-    `;
-    const dots = document.createElement('div');
-    dots.className = 'chatbot-typing-dots';
-    dots.innerHTML = '<span></span><span></span><span></span>';
-
-    typing.appendChild(avatar);
-    typing.appendChild(dots);
-    messages.appendChild(typing);
-    scrollMessages();
-    return typing;
-  }
-
-  function removeTyping() {
-    const t = document.getElementById('typingIndicator');
-    if (t) t.remove();
-  }
-
-  const botResponses = {
-    'voir les solutions ia': 'Nous proposons des modèles IA sur mesure, l\'automatisation intelligente des processus, ainsi que notre produit phare <strong>AryadRH</strong>. <a href="#solutions" style="color:var(--accent);">Voir toutes les solutions →</a>',
-    'planifier un appel': 'Avec plaisir ! Vous pouvez nous contacter directement à <a href="mailto:contact@aryad.ai" style="color:var(--accent);">contact@aryad.ai</a> ou utiliser le bouton ci-dessous pour planifier un appel stratégique.',
-    'en savoir plus sur aryadrh': '<strong>AryadRH</strong> est notre logiciel de gestion RH augmenté par l\'IA — recrutement prédictif, analyse des performances, automatisation administrative. <a href="#product" style="color:var(--accent);">En savoir plus →</a>',
-    'default': 'Merci pour votre message ! Notre équipe vous répondra rapidement. En attendant, n\'hésitez pas à <a href="#cta" style="color:var(--accent);">planifier un appel stratégique</a>.',
-  };
-
-  function getBotResponse(userText) {
-    const key = userText.toLowerCase().trim();
-    return botResponses[key] || botResponses['default'];
-  }
-
-  function sendMessage(text) {
-    if (input) document.getElementById('chatbotInput').value = "";
-    const trimmed = text.trim();
-    if (!trimmed) return;
-    appendMessage(trimmed, 'user');
-    if (sendBtn) sendBtn.disabled = true;
-
-    const typingEl = showTyping();
-
-    setTimeout(() => {
-      removeTyping();
-      appendMessage(getBotResponse(trimmed), 'bot');
-      if (input) document.getElementById('chatbotInput').value = "";
-      if (sendBtn) sendBtn.disabled = false;
-      if (input) input.focus();
-    }, 900 + Math.random() * 400);
-  }
-
-  if (sendBtn) {
-    sendBtn.addEventListener('click', () => {
-      if (input) {
-        var value = input.value;
-        document.getElementById('chatbotInput').value = "";
-        sendMessage(value);
-      }
-
-    });
-  }
-
-  if (input) {
-    input.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        if (input) {
-        var value = input.value;
-        document.getElementById('chatbotInput').value = "";
-        sendMessage(value);
-      }
-      }
-    });
-  }
-
-  window.sendSuggestion = function(btn) {
-    sendMessage(btn.textContent);
-  };
 })();

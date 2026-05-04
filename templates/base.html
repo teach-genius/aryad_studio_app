@@ -3,44 +3,254 @@
  {% load csp %}
 <html lang="fr" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{% block meta_description %}ARYAD{% endblock %}">
-  <title>{% block title %}ARYAD — Intelligence Artificielle & Architecture Logicielle{% endblock %}</title>
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="fr">
-  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}ARYAD Studio — Studio spécialisé en IA et architecture logicielle. Nous concevons des agents intelligents, des APIs robustes et des solutions sur mesure pour les entreprises ambitieuses.{% endblock %}">
+    <title>{% block title %}ARYAD Studio — Intelligence Artificielle & Architecture Logicielle{% endblock %}</title>
+
+    <!-- SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="fr">
+    <meta name="author" content="ARYAD Studio">
+    <meta name="keywords" content="intelligence artificielle, agents IA, architecture logicielle, développement sur mesure, LLM, automatisation, API, solutions IA entreprises, aryadstudio">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Favicon -->
     <link rel="icon" href="{% static 'imgs/favicon.ico' %}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{% static 'imgs/logo.svg' %}">
+
+    <!-- Open Graph (LinkedIn, Facebook) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="CSGRIA - Intelligence Artificielle au Gabon">
-    <meta property="og:description" content="Recherche et innovation en intelligence artificielle, data science et technologie en Afrique.">
+    <meta property="og:site_name" content="ARYAD Studio">
+    <meta property="og:title" content="{% block og_title %}ARYAD Studio — Intelligence Artificielle & Architecture Logicielle{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Studio spécialisé en IA et architecture logicielle. Agents intelligents, APIs robustes et solutions sur mesure pour les entreprises ambitieuses.{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:image" content="{% static 'imgs/logo.svg' %}">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CSGRIA - IA au Gabon">
-    <meta name="twitter:description" content="Recherche et innovation en intelligence artificielle et data science en Afrique.">
-    <meta name="twitter:image" content="{% static 'imgs/logo.svg' %}">
-    
-  {% load static %}
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta property="og:locale" content="fr_FR">
 
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="{% static 'css/aryad.css' %}">
-  {% block extra_css %}{% endblock %}
-  <script type="application/ld+json" nonce="{{ request.csp_nonce }}">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@aryadstudio">
+    <meta name="twitter:title" content="{% block twitter_title %}ARYAD Studio — IA & Architecture Logicielle{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Studio spécialisé en intelligence artificielle et architecture logicielle. Solutions sur mesure pour les entreprises ambitieuses.{% endblock %}">
+    <meta name="twitter:image" content="{% static 'imgs/logo.svg' %}">
+    <!-- Open Graph -->
+    <meta property="og:see_also" content="https://www.linkedin.com/in/aryad-studio-78482a407">
+      <style>
+        /* ═══════════════════════════════════════
+       1. CSS VARIABLES
+       ═══════════════════════════════════════ */
+
+    :root {
+      /* Backgrounds */
+      --bg:             #06070a;
+      --bg2:            #0c0d12;
+
+      /* Surfaces */
+      --surface:        rgba(255,255,255,0.03);
+      --surface-hover:  rgba(255,255,255,0.06);
+
+      /* Borders */
+      --border:         rgba(255,255,255,0.07);
+      --border-bright:  rgba(255,255,255,0.14);
+
+      /* Text — WCAG AA compliant on --bg (#06070a) */
+      --text-primary:   #f0f0f4;          /* ~17:1 */
+      --text-secondary: #9898b0;          /* ~5.5:1  (était #7a7a8a ≈ 4.9:1, ok) */
+      --text-muted:     #8080a0;          /* ~5.1:1  (était #3e3e50 ≈ 2:1 ✗) */
+
+      /* Accents */
+      --accent:         #1976db;
+      --accent2:        #e58a06;
+      --accent-glow:    rgba(79,127,255,0.18);
+      --accent2-glow:   rgba(124,79,255,0.14);
+      --grad:           linear-gradient(135deg, #1976db 0%, #e58a06 100%);
+
+      /* Chrome controls */
+      --nav-bg:         rgba(6,7,10,0.75);
+      --mobile-menu-bg: rgba(6,7,10,0.97);
+
+      /* Typography */
+      --font-display:   'Bricolage Grotesque', sans-serif;
+      --font-body:      'Outfit', sans-serif;
+    }
+
+    /* ── Light theme ───────────────────────
+       Palette cible :
+       • Fond principal  : blanc cassé chaud (#f8f7f5)
+       • Fond secondaire : blanc pur (#ffffff)
+       • Surfaces        : voile gris très léger
+       • Texte primaire  : quasi-noir bleu (#111827)  — 16:1 sur fond clair
+       • Texte secondaire: #434958                    — 7.3:1
+       • Texte discret   : #626878                    — 5:1 (WCAG AA)
+       • Accent          : bleu légèrement saturé
+       ───────────────────────────────────── */
+    [data-theme="light"] {
+      --bg:             #f8f7f5;
+      --bg2:            #ffffff;
+
+      --surface:        rgba(0,0,0,0.04);
+      --surface-hover:  rgba(0,0,0,0.07);
+
+      --border:         rgba(0,0,0,0.09);
+      --border-bright:  rgba(0,0,0,0.17);
+
+      /* Text — WCAG AA compliant on --bg (#f8f7f5, L≈0.96) */
+      --text-primary:   #111827;          /* ~18:1 */
+      --text-secondary: #434958;          /* ~7.3:1 */
+      --text-muted:     #626878;          /* ~5:1   (était #aaaabc ≈ 2:1 ✗) */
+
+      --accent:         #155ec4;
+      --accent2:        #c97c06;
+      --accent-glow:    rgba(21,94,196,0.10);
+      --accent2-glow:   rgba(201,124,6,0.10);
+      --grad:           linear-gradient(135deg, #155ec4 0%, #c97c06 100%);
+
+      --nav-bg:         rgba(248,247,245,0.85);
+      --mobile-menu-bg: rgba(248,247,245,0.98);
+    }
+
+
+    /* ═══════════════════════════════════════
+       2. RESET & BASE
+       ═══════════════════════════════════════ */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+    /* ═══════════════════════════════════════
+       3. SCROLLBAR
+       ═══════════════════════════════════════ */
+
+    ::-webkit-scrollbar         { width: 3px; }
+    ::-webkit-scrollbar-track   { background: var(--bg); }
+    ::-webkit-scrollbar-thumb   { background: var(--text-muted); border-radius: 2px; }
+
+
+    /* ═══════════════════════════════════════
+       4. NOISE TEXTURE OVERLAY
+       ═══════════════════════════════════════ */
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* Reduce noise in light mode — it looks dirty on bright backgrounds */
+    [data-theme="light"] body::before { opacity: 0.15; }
+
+
+    /* ═══════════════════════════════════════
+       5. NAVBAR
+       ═══════════════════════════════════════ */
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 0 5%;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--nav-bg);                     /* ← was hardcoded dark */
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    /* Light mode: reinforce the bottom border so the navbar reads clearly */
+    [data-theme="light"] nav { border-bottom-color: var(--border-bright); }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.nav-active { color: var(--text-primary); }
+
+    .nav-actions {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    </style>
+    <!-- Global CSS -->
+    {% block extra_css %}{% endblock %}
+    <script type="application/ld+json" nonce="{{ request.csp_nonce }}">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "aryadstudio",
+      "name": "ARYAD Studio",
       "url": "{{ request.build_absolute_uri }}",
-      "description": "Comité de recherche sur l'intelligence artificielle au Gabon",
-      "sameAs": []
+      "logo": "{% static 'imgs/logo.svg' %}",
+      "description": "Studio spécialisé en intelligence artificielle et architecture logicielle. Nous concevons des agents intelligents, des APIs robustes et des solutions sur mesure pour les entreprises ambitieuses.",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Maroc"
+      },
+      "knowsAbout": [
+        "Intelligence Artificielle",
+        "Architecture Logicielle",
+        "Agents Conversationnels",
+        "LLM",
+        "Développement sur mesure",
+        "APIs",
+        "Automatisation intelligente",
+        "site web",
+        "applications web",
+        "logiciel"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/aryad-studio-78482a407",
+        "https://github.com/aryadstudio"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": ["French", "Arabic", "English"]
+      }
     }
     </script>
+    <link rel="stylesheet" href="{% static 'css/aryad.css' %}">
 </head>
 <body>
 
@@ -50,17 +260,11 @@
   <main id="main-content" style="overflow-x: hidden;">
     {% block content %}{% endblock %}
   </main>
-
   {% include "partials/_footer.html" %}
-  <script>
-    window.ARYAD_CONFIG = {
-      botAvatarUrl: "{% static 'imgs/bot.png' %}",
-    };
-  </script>
 
   <!-- Global JS -->
-  <script src="{% static 'js/aryad.js' %}"></script>
-  <script src="{% static 'js/visitor.js' %}"></script>
+  <script src="{% static 'js/aryad.js' %}" nonce="{{ request.csp_nonce }}" defer></script>
+  <script src="{% static 'js/visitor.js' %}" nonce="{{ request.csp_nonce }}" defer></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

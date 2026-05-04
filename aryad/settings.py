@@ -81,7 +81,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'csp.middleware.CSPMiddleware',
-    'core.middleware.PermissionsPolicyMiddleware',
+    'web.middleware.PermissionsPolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,6 +126,7 @@ DATABASES = {
         'PORT': os.getenv('PORT'),
         'OPTIONS': {
             'sql_mode': 'STRICT_TRANS_TABLES',
+            'charset': 'utf8mb4',
         }
     }
 }
@@ -162,7 +163,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static'] 
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
@@ -174,14 +175,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CONTENT_SECURITY_POLICY = {
-    'NONCE_IN': ['script-src'],
+    'NONCE_IN': ['script-src', 'script-src-elem'],
     'DIRECTIVES': {
         'default-src':     ("'self'",),
         'script-src':      ("'self'",),
+        'script-src-elem': ("'self'",),
         'style-src':       ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
         'img-src':         ("'self'", "data:", "https://i.ytimg.com"),
         'font-src':        ("'self'", "https://fonts.gstatic.com"),
         'frame-src':       ("https://www.youtube.com",),
         'frame-ancestors': ("'none'",),
+        'connect-src':     ("'self'",),
     }
 }

@@ -19,12 +19,19 @@ from django.urls import path
 from web import views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import TemplateView
+from .views import get_geo
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('secure-panel-aryad-studio/', admin.site.urls),
     path('',views.index_view,name='home'),
     path('api/visitor/register/', views.register_visitor, name='register_visitor'),
     path('api/chat/',views.chat_view,name='chat'),
+    path('api/geo/', get_geo),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
 ]
 
 if settings.DEBUG:

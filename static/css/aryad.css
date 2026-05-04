@@ -1,161 +1,58 @@
-/*
- * aryad.css — ARYAD Global Stylesheet
- * Static file: static/css/aryad.css
- * Fonts loaded in base.html via Google Fonts
- * ------------------------------------------
- * Table of contents:
- *  1. CSS Variables (Dark + Light themes)
- *  2. Reset & Base
- *  3. Scrollbar
- *  4. Noise texture
- *  5. Navbar
- *  6. Mobile Menu
- *  7. Hero
- *  8. Sections & Layout utilities
- *  9. About
- * 10. Trust Cards
- * 11. Solutions
- * 12. Process
- * 13. Technologies
- * 14. CTA Block
- * 15. Footer
- * 16. Marquee
- * 17. Glow Ring
- * 18. Responsive
- */
-
-
-/* ═══════════════════════════════════════
-   1. CSS VARIABLES
-   ═══════════════════════════════════════ */
-
-:root {
-  --bg:             #06070a;
-  --bg2:            #0c0d12;
-  --surface:        rgba(255,255,255,0.03);
-  --surface-hover:  rgba(255,255,255,0.06);
-  --border:         rgba(255,255,255,0.07);
-  --border-bright:  rgba(255,255,255,0.14);
-  --text-primary:   #f0f0f4;
-  --text-secondary: #7a7a8a;
-  --text-muted:     #3e3e50;
-  --accent:         #1976db;
-  --accent2:        #e58a06;
-  --accent-glow:    rgba(79,127,255,0.18);
-  --accent2-glow:   rgba(124,79,255,0.14);
-  --grad:           linear-gradient(135deg, #1976db 0%, #e58a06 100%);
-  --font-display:   'Bricolage Grotesque', sans-serif;
-  --font-body:      'Outfit', sans-serif;
+/* poppins-300 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/static/fonts/poppins-v24-latin-300.woff2') format('woff2');
 }
-
-[data-theme="light"] {
-  --bg:             #f5f5f7;
-  --bg2:            #ffffff;
-  --surface:        rgba(0,0,0,0.03);
-  --surface-hover:  rgba(0,0,0,0.06);
-  --border:         rgba(0,0,0,0.08);
-  --border-bright:  rgba(0,0,0,0.14);
-  --text-primary:   #202635;
-  --text-secondary: #555566;
-  --text-muted:     #aaaabc;
-  --accent-glow:    rgba(79,127,255,0.12);
-}
-
-
-/* ═══════════════════════════════════════
-   2. RESET & BASE
-   ═══════════════════════════════════════ */
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  overflow-x: hidden;
-  background: var(--bg);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-
-/* ═══════════════════════════════════════
-   3. SCROLLBAR
-   ═══════════════════════════════════════ */
-
-::-webkit-scrollbar         { width: 3px; }
-::-webkit-scrollbar-track   { background: var(--bg); }
-::-webkit-scrollbar-thumb   { background: var(--text-muted); border-radius: 2px; }
-
-
-/* ═══════════════════════════════════════
-   4. NOISE TEXTURE OVERLAY
-   ═══════════════════════════════════════ */
-
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0.4;
-}
-
-
-/* ═══════════════════════════════════════
-   5. NAVBAR
-   ═══════════════════════════════════════ */
-
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 900;
-  padding: 0 5%;
-  height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(6,7,10,0.7);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid var(--border);
-  transition: background 0.3s;
-}
-
-.nav-logo {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.25rem;
-  letter-spacing: 0.06em;
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex; align-items: center; gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.875rem;
+/* poppins-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
   font-weight: 400;
-  letter-spacing: 0.01em;
-  transition: color 0.2s;
+  src: url('/static/fonts/poppins-v24-latin-regular.woff2') format('woff2');
 }
-
-.nav-links a:hover,
-.nav-links a.nav-active { color: var(--text-primary); }
-
-.nav-actions {
-  display: flex; align-items: center; gap: 1rem;
+/* poppins-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/static/fonts/poppins-v24-latin-500.woff2') format('woff2');
+}
+/* poppins-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/static/fonts/poppins-v24-latin-600.woff2') format('woff2');
+}
+/* poppins-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/static/fonts/poppins-v24-latin-700.woff2') format('woff2');
+}
+/* poppins-800 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/static/fonts/poppins-v24-latin-800.woff2') format('woff2');
+}
+/* poppins-900 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/static/fonts/poppins-v24-latin-900.woff2') format('woff2');
 }
 
 /* Button: ghost */
@@ -247,7 +144,7 @@ nav {
 
 .mobile-menu {
   position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
-  background: rgba(6,7,10,0.97);
+  background: var(--mobile-menu-bg);             /* ← was hardcoded dark */
   backdrop-filter: blur(24px);
   z-index: 850;
   padding: 2rem 5%;
@@ -302,6 +199,14 @@ nav {
   pointer-events: none;
 }
 
+/* Softer gradients in light mode */
+[data-theme="light"] .hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(21,94,196,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%,  rgba(201,124,6,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 20% 60%,  rgba(21,94,196,0.04) 0%, transparent 50%);
+}
+
 .hero-badge {
   display: inline-flex; align-items: center; gap: 0.5rem;
   background: var(--surface);
@@ -350,6 +255,11 @@ nav {
   color: transparent;
   font-weight: 800;
   letter-spacing: -0.04em;
+}
+
+/* Light mode outline: thinner stroke so it doesn't feel heavy */
+[data-theme="light"] .hero-title .line-outline {
+  -webkit-text-stroke: 1px var(--text-primary);
 }
 
 .hero-title .grad-text {
@@ -822,6 +732,10 @@ section { padding: 100px 5%; }
   pointer-events: none;
 }
 
+[data-theme="light"] .cta-block::before {
+  background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(21,94,196,0.06) 0%, transparent 60%);
+}
+
 .cta-block .section-title  { max-width: none; }
 .cta-block .section-body   { max-width: none; margin: 0 auto 2.5rem; }
 .cta-block .section-eyebrow { justify-content: center; }
@@ -889,19 +803,21 @@ footer {
   margin-bottom: 0.85rem;
 }
 
+/* footer-tagline: was --text-muted (#3e3e50 ✗), now --text-secondary (≥5:1 ✓) */
 .footer-tagline {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 0.85rem; line-height: 1.6;
   margin-bottom: 1.5rem;
   font-weight: 300;
 }
 
+/* footer-col-title: was --text-muted (#3e3e50 ✗), now --text-muted updated (≥5:1 ✓) */
 .footer-col-title {
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 1.1rem;
 }
 
@@ -919,10 +835,11 @@ footer {
 
 .footer-nav a:hover { color: var(--text-primary); }
 
+/* footer-status text: was --text-muted (#3e3e50 ✗), now --text-secondary (✓) */
 .footer-status {
   display: inline-flex; align-items: center; gap: 0.5rem;
   margin-top: 1.5rem;
-  font-size: 0.75rem; color: var(--text-muted);
+  font-size: 0.75rem; color: var(--text-secondary);
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 0.35rem 0.85rem;
@@ -966,8 +883,10 @@ footer {
   flex-wrap: wrap; gap: 0.75rem;
 }
 
+/* footer-copy: was --text-muted (#3e3e50 ✗), now --text-secondary (✓) */
 .footer-copy {
-  color: var(--text-muted); font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
 }
 
 .footer-copy--right {
@@ -996,17 +915,19 @@ footer {
 
 .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 
+/* marquee-item: was --text-muted (#3e3e50 ✗), now --text-secondary (✓) */
 .marquee-item {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 0.78rem; letter-spacing: 0.1em;
   text-transform: uppercase; font-weight: 500;
   flex-shrink: 0;
 }
 
+/* marquee-dot: also updated to --text-secondary for consistency */
 .marquee-dot {
   width: 4px; height: 4px;
-  background: var(--text-muted);
+  background: var(--text-secondary);
   border-radius: 50%; flex-shrink: 0;
 }
 
@@ -1167,6 +1088,14 @@ footer {
     0 24px 80px rgba(0,0,0,0.4),
     0 0 40px rgba(79,127,255,0.06);
   background: var(--bg2);
+}
+
+/* Light mode mockup shadow — dark shadows on white look odd */
+[data-theme="light"] .product-mockup {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 16px 48px rgba(0,0,0,0.12),
+    0 0 24px rgba(21,94,196,0.04);
 }
 
 /* Browser chrome bar */
@@ -1383,6 +1312,10 @@ footer {
   box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
+[data-theme="light"] .scroll-top {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
 .scroll-top.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -1477,6 +1410,13 @@ footer {
   display: flex; flex-direction: column;
   transform-origin: bottom left;
   animation: chatOpen 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+[data-theme="light"] .chatbot-panel {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 16px 40px rgba(0,0,0,0.12),
+    0 0 20px rgba(21,94,196,0.04);
 }
 
 @keyframes chatOpen {
@@ -1687,7 +1627,7 @@ footer {
 
 .chatbot-send:active { transform: scale(0.95); }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 480px) {
   .chatbot-wrapper { left: 1rem; bottom: 1rem; }
   .chatbot-panel   { width: calc(100vw - 2rem); }

@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
 <link rel="icon" href="{% static 'icons/favicon.ico' %}">
-{% block title %}ARYAD — Intelligence Artificielle & Architecture Logicielle{% endblock %}
 
-{% block meta_description %}ARYAD conçoit et déploie des systèmes d'intelligence artificielle sur mesure — modélisation, architecture logicielle, applications web & mobile pour PME et grandes entreprises.{% endblock %}
+{% block title %}ARYAD Studio — Intelligence Artificielle & Architecture Logicielle au Maroc{% endblock %}
+
+{% block meta_description %}ARYAD Studio conçoit et déploie des systèmes d'intelligence artificielle sur mesure pour entreprises, startups, PME et particuliers. Agents IA, automatisation, applications web & mobile, architecture logicielle. Résultats concrets, déploiement rapide.{% endblock %}
+
+{% block og_title %}ARYAD Studio — Intelligence Artificielle & Architecture Logicielle{% endblock %}
+{% block og_description %}Studio IA spécialisé en intelligence artificielle et architecture logicielle. Agents intelligents, automatisation, applications web & mobile sur mesure pour tous les profils — entreprises, startups, PME, particuliers.{% endblock %}
+{% block twitter_title %}ARYAD Studio — IA & Architecture Logicielle au Maroc{% endblock %}
+{% block twitter_description %}ARYAD Studio conçoit des systèmes IA sur mesure : agents intelligents, automatisation, apps web & mobile. Pour entreprises, startups, PME et particuliers ambitieux.{% endblock %}
 
 {% block content %}
 {% load static %}
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
 <section id="hero" aria-label="Section principale">
 
   <canvas id="particles" aria-hidden="true"></canvas>
@@ -33,9 +43,9 @@
   </h1>
 
   <p class="hero-sub">
-    ARYAD conçoit et déploie des systèmes d'intelligence artificielle sur mesure —
+    ARYAD Studio conçoit et déploie des systèmes d'intelligence artificielle sur mesure —
     de la modélisation à la mise en production.
-    Pour les entreprises qui veulent prendre une longueur d'avance.
+    Pour les entreprises, startups, PME et particuliers qui veulent prendre une longueur d'avance.
   </p>
 
   <div class="hero-cta" role="group" aria-label="Actions principales">
@@ -48,7 +58,7 @@
       </svg>
     </a>
     <a href="#cta" class="cta-secondary">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg>
       Collaborer avec nous
     </a>
   </div>
@@ -60,87 +70,100 @@
 
 </section>
 
+<!-- ════════════════════════════════════════════
+     MARQUEE
+════════════════════════════════════════════ -->
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
     {% for item in marquee_items %}
-      <span class="marquee-item"><span class="marquee-dot"></span>{{ item }}</span>
+      <span class="marquee-item" aria-hidden="true"><span class="marquee-dot"></span>{{ item }}</span>
     {% endfor %}
-    {# Duplicate for seamless infinite loop #}
     {% for item in marquee_items %}
-      <span class="marquee-item"><span class="marquee-dot"></span>{{ item }}</span>
+      <span class="marquee-item" aria-hidden="true"><span class="marquee-dot"></span>{{ item }}</span>
     {% endfor %}
   </div>
 </div>
 
+<!-- ════════════════════════════════════════════
+     À PROPOS
+════════════════════════════════════════════ -->
 <section id="about" aria-labelledby="about-title">
   <div class="container">
     <div class="about-grid">
 
-      {# Left column — texte #}
       <div class="reveal">
-        <p class="section-eyebrow">À propos d'ARYAD</p>
+        <p class="section-eyebrow">À propos d'ARYAD Studio</p>
         <h2 class="section-title" id="about-title">
           Un studio IA<br>
-          de nouvelle<br>
-          génération.
+          accessible à tous,<br>
+          <span class="grad-text">expert en tout.</span>
         </h2>
         <p class="section-body">
-          ARYAD est un studio spécialisé en intelligence artificielle et architecture logicielle.
+          ARYAD Studio est un studio marocain spécialisé en intelligence artificielle et architecture logicielle.
           Nous concevons des systèmes intelligents pensés pour durer — robustes, scalables,
-          et alignés sur les objectifs métier de nos clients.
+          et alignés sur les objectifs de nos clients, qu'ils soient grandes entreprises, PME, startups ou particuliers ambitieux.
         </p>
         <p class="section-body" style="margin-top:1rem;">
           De la modélisation de modèles IA personnalisés à leur intégration dans des applications
-          critiques, nous intervenons à chaque étape du cycle de développement avec exigence
-          et orientation résultats.
+          critiques, nous intervenons à chaque étape du cycle de développement avec exigence,
+          agilité et orientation résultats — quel que soit votre secteur ou votre taille.
         </p>
         <div class="pills" role="list" aria-label="Domaines d'expertise">
-          <span class="pill" role="listitem">Modèles IA sur mesure</span>
+          <span class="pill" role="listitem">Agents IA sur mesure</span>
           <span class="pill" role="listitem">Architecture logicielle</span>
           <span class="pill" role="listitem">R&amp;D appliquée</span>
           <span class="pill" role="listitem">Solutions entreprise</span>
           <span class="pill" role="listitem">Sous-traitance technique</span>
           <span class="pill" role="listitem">Web &amp; Mobile</span>
+          <span class="pill" role="listitem">Automatisation intelligente</span>
+          <span class="pill" role="listitem">LLM &amp; Chatbots</span>
         </div>
       </div>
 
-      {# Right column — Trust cards #}
       <div class="reveal" style="transition-delay:0.15s;">
         <div class="trust-grid" role="list" aria-label="Profils clients">
 
           <div class="trust-card" role="listitem">
-            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M9 8l1 0" /><path d="M9 12l1 0" /><path d="M9 16l1 0" /><path d="M14 8l1 0" /><path d="M14 12l1 0" /><path d="M14 16l1 0" /><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" /></svg></span>
+            <span class="trust-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M9 8l1 0" /><path d="M9 12l1 0" /><path d="M9 16l1 0" /><path d="M14 8l1 0" /><path d="M14 12l1 0" /><path d="M14 16l1 0" /><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" /></svg>
+            </span>
             <div class="trust-title">PME &amp; ETI</div>
             <p class="trust-desc">
-              Automatisation, outils IA intégrés et solutions sur mesure
-              pour les entreprises en croissance.
+              Automatisation des processus, outils IA intégrés et solutions sur mesure
+              pour les entreprises en croissance qui veulent gagner en efficacité.
             </p>
           </div>
 
           <div class="trust-card" role="listitem">
-            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M3.6 9h16.8" /><path d="M3.6 15h16.8" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a17 17 0 0 1 0 18" /></svg></span>
+            <span class="trust-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M3.6 9h16.8" /><path d="M3.6 15h16.8" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a17 17 0 0 1 0 18" /></svg>
+            </span>
             <div class="trust-title">Grandes entreprises</div>
             <p class="trust-desc">
-              Architecture IA à l'échelle, intégration dans des systèmes complexes
-              et accompagnement stratégique.
+              Architecture IA à l'échelle, intégration dans des systèmes complexes,
+              accompagnement stratégique et conformité entreprise.
             </p>
           </div>
 
           <div class="trust-card" role="listitem">
-            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg></span>
-            <div class="trust-title">Partenaires tech</div>
-            <p class="trust-desc">
-              Sous-traitance technique, renfort d'équipes et expertise IA
-              pour agences et ESN.
-            </p>
-          </div>
-
-          <div class="trust-card" role="listitem">
-            <span class="trust-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-air-balloon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 20a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -1" /><path d="M12 16c3.314 0 6 -4.686 6 -8a6 6 0 1 0 -12 0c0 3.314 2.686 8 6 8" /><path d="M10 9a2 7 0 1 0 4 0a2 7 0 1 0 -4 0" /></svg></span>
+            <span class="trust-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M5 21v-14a2 2 0 0 1 2 -2h3a2 2 0 0 1 2 2v14" /><path d="M14 21v-7a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v7" /><path d="M3 7l9 -4l9 4" /></svg>
+            </span>
             <div class="trust-title">Startups &amp; scale-ups</div>
             <p class="trust-desc">
-              Du proof of concept au déploiement production —
-              vitesse d'exécution et excellence technique.
+              Du proof of concept au déploiement production — vitesse d'exécution,
+              excellence technique et vision long terme pour aller vite sans dette.
+            </p>
+          </div>
+
+          <div class="trust-card" role="listitem">
+            <span class="trust-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+            </span>
+            <div class="trust-title">Particuliers &amp; freelances</div>
+            <p class="trust-desc">
+              Création de votre outil IA personnel, automatisation de vos tâches
+              et développement de votre projet digital — sans barrière d'entrée.
             </p>
           </div>
 
@@ -153,64 +176,84 @@
 
 <div class="divider"></div>
 
+<!-- ════════════════════════════════════════════
+     SOLUTIONS
+════════════════════════════════════════════ -->
 <section id="solutions" aria-labelledby="solutions-title">
   <div class="container">
 
     <div class="reveal">
       <p class="section-eyebrow">Solutions</p>
       <h2 class="section-title" id="solutions-title">
-        Ce que nous construisons<br>pour votre entreprise
+        Ce que nous construisons<br>pour vous
       </h2>
+      <p class="section-body">
+        Des solutions IA concrètes, adaptées à chaque besoin — de l'automatisation simple
+        à l'architecture logicielle complexe, pour tous les profils et tous les budgets.
+      </p>
     </div>
 
-    <div class="solutions-grid" role="list" aria-label="Liste des solutions">
+    <div class="solutions-grid" role="list" aria-label="Liste des solutions ARYAD Studio">
 
       <div class="solution-card reveal" role="listitem" style="transition-delay:0.05s;">
-        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brain"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg></div>
+        <div class="solution-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
+        </div>
         <div class="solution-title">AryadRH</div>
         <p class="solution-desc">
-          Logiciel de gestion des ressources humaines augmenté par l'IA.
-          Recrutement prédictif, analyse des performances, automatisation des processus RH.
+          Logiciel de gestion des ressources humaines augmenté par l'IA —
+          recrutement prédictif, analyse des performances, automatisation RH.
+          Idéal pour PME, ETI et grandes entreprises.
         </p>
         <span class="solution-tag">Produit phare →</span>
       </div>
 
       <div class="solution-card reveal" role="listitem" style="transition-delay:0.10s;">
-        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings-ai"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" /><path d="M9 14v-2.5a1.5 1.5 0 0 1 3 0v2.5" /><path d="M9 13h3" /><path d="M15 10v4" /></svg></div>
-        <div class="solution-title">Modèles d'IA personnalisés</div>
+        <div class="solution-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" /><path d="M9 14v-2.5a1.5 1.5 0 0 1 3 0v2.5" /><path d="M9 13h3" /><path d="M15 10v4" /></svg>
+        </div>
+        <div class="solution-title">Agents IA &amp; LLM sur mesure</div>
         <p class="solution-desc">
-          Conception et entraînement de modèles sur mesure — classification, génération,
-          prédiction — adaptés à vos données et objectifs métier.
+          Conception d'agents conversationnels, chatbots intelligents et modèles LLM
+          adaptés à vos données et objectifs — du simple assistant au système multi-agents complexe.
         </p>
         <span class="solution-tag">Sur mesure →</span>
       </div>
 
       <div class="solution-card reveal" role="listitem" style="transition-delay:0.15s;">
-        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-automatic-gearbox"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17v4h1a2 2 0 1 0 0 -4h-1" /><path d="M17 11h1.5a1.5 1.5 0 0 0 0 -3h-1.5v5" /><path d="M3 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 7v3a1 1 0 0 0 1 1h3v7a1 1 0 0 0 1 1h3" /><path d="M9 11h4" /></svg></div>
+        <div class="solution-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17v4h1a2 2 0 1 0 0 -4h-1" /><path d="M17 11h1.5a1.5 1.5 0 0 0 0 -3h-1.5v5" /><path d="M3 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 7v3a1 1 0 0 0 1 1h3v7a1 1 0 0 0 1 1h3" /><path d="M9 11h4" /></svg>
+        </div>
         <div class="solution-title">Automatisation intelligente</div>
         <p class="solution-desc">
-          Identification et automatisation des processus métier à fort potentiel
-          via des agents IA, workflows intelligents et intégrations système.
+          Identification et automatisation des processus métier à fort potentiel —
+          workflows intelligents, agents IA, intégrations système.
+          Gagnez du temps, réduisez les erreurs, scalez sans friction.
         </p>
         <span class="solution-tag">Process AI →</span>
       </div>
 
       <div class="solution-card reveal" role="listitem" style="transition-delay:0.20s;">
-        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-html5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5l16 0" /><path d="M15.5 8h-7l.5 4h6l-.5 3.5l-2.5 .75l-2.5 -.75l-.1 -.5" /></svg></div>
+        <div class="solution-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5l16 0" /><path d="M15.5 8h-7l.5 4h6l-.5 3.5l-2.5 .75l-2.5 -.75l-.1 -.5" /></svg>
+        </div>
         <div class="solution-title">Applications Web &amp; Mobile</div>
         <p class="solution-desc">
-          Développement fullstack d'applications performantes, intégrant des capacités IA
-          nativement — de l'interface utilisateur à l'infrastructure cloud.
+          Développement fullstack d'applications performantes intégrant des capacités IA nativement.
+          De l'interface utilisateur à l'infrastructure cloud — pour particuliers, startups et grandes entreprises.
         </p>
         <span class="solution-tag">Fullstack AI →</span>
       </div>
 
       <div class="solution-card reveal" role="listitem" style="transition-delay:0.25s;">
-        <div class="solution-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-microscope"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg></div>
+        <div class="solution-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg>
+        </div>
         <div class="solution-title">Conseil &amp; R&amp;D en IA</div>
         <p class="solution-desc">
-          Accompagnement stratégique dans la définition de votre feuille de route IA,
-          évaluation de faisabilité, proof of concept et transfert de compétences.
+          Accompagnement stratégique dans la définition de votre feuille de route IA —
+          évaluation de faisabilité, proof of concept, transfert de compétences
+          et formation de vos équipes.
         </p>
         <span class="solution-tag">Stratégie →</span>
       </div>
@@ -218,11 +261,13 @@
       <div class="solution-card reveal" role="listitem" style="transition-delay:0.30s;">
         <div class="solution-icon"
              style="background:var(--accent-glow);border-color:rgba(79,127,255,0.3);"
-             aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg></div>
-        <div class="solution-title">Sous-traitance technique</div>
+             aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg>
+        </div>
+        <div class="solution-title">Sous-traitance &amp; CTO externalisé</div>
         <p class="solution-desc">
           Intervention en tant que CTO externalisé ou lead technique IA pour renforcer
-          vos équipes sur des projets critiques et complexes.
+          vos équipes sur des projets critiques — agences, ESN, startups sans tech co-founder.
         </p>
         <span class="solution-tag">Partenariat →</span>
       </div>
@@ -233,11 +278,13 @@
 
 <div class="divider"></div>
 
+<!-- ════════════════════════════════════════════
+     PRODUIT PHARE
+════════════════════════════════════════════ -->
 <section id="product" aria-labelledby="product-title">
   <div class="container">
     <div class="product-grid">
 
-      {# Left — texte #}
       <div class="product-text reveal">
         <p class="section-eyebrow">Produit phare</p>
         <h2 class="section-title" id="product-title">
@@ -248,9 +295,9 @@
         <p class="section-body">
           AryadRH transforme la gestion des ressources humaines en intégrant des modèles
           d'IA directement dans les processus RH — du recrutement prédictif à l'analyse
-          des performances en temps réel.
+          des performances en temps réel. Accessible aux PME comme aux grandes entreprises.
         </p>
-        <ul class="product-features" aria-label="Fonctionnalités clés">
+        <ul class="product-features" aria-label="Fonctionnalités clés d'AryadRH">
           <li><span class="pf-dot" aria-hidden="true"></span>Recrutement prédictif par matching IA</li>
           <li><span class="pf-dot" aria-hidden="true"></span>Analyse des performances &amp; détection des talents</li>
           <li><span class="pf-dot" aria-hidden="true"></span>Automatisation des processus administratifs RH</li>
@@ -259,7 +306,7 @@
         </ul>
         <div class="product-cta">
           <a href="#cta" class="cta-primary" style="font-size:0.875rem;padding:0.75rem 1.5rem;">
-            Demander une démo
+            Demander une démo gratuite
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -277,12 +324,6 @@
             <span class="mockup-url">app.aryad.ai/rh/dashboard</span>
           </div>
           <div class="mockup-screen">
-
-            {# {% load static %}                                        #}
-            {# <img src="{% static 'img/aryad-rh-screenshot.png' %}" #}
-            {#      alt="Interface AryadRH"                             #}
-            {#      class="mockup-img" loading="lazy">                  #}
-
             <div class="mock-ui">
               <div class="mock-sidebar">
                 <div class="mock-logo-sm"></div>
@@ -334,7 +375,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         <div class="product-glow" aria-hidden="true"></div>
@@ -346,28 +386,29 @@
 
 <div class="divider"></div>
 
+<!-- ════════════════════════════════════════════
+     PROCESSUS
+════════════════════════════════════════════ -->
 <section id="process" aria-labelledby="process-title">
   <div class="container">
 
     <div class="reveal" style="text-align:center;">
-      <p class="section-eyebrow" style="justify-content:center;">
-        Processus
-      </p>
+      <p class="section-eyebrow" style="justify-content:center;">Processus</p>
       <h2 class="section-title" id="process-title">Comment nous travaillons</h2>
       <p class="section-body" style="margin:0 auto;">
-        Un processus structuré, de la compréhension du besoin à la mise en production
-        — sans approximation.
+        Un processus structuré, de la compréhension du besoin à la mise en production —
+        transparent, itératif et sans approximation. Que vous soyez particulier ou grand groupe.
       </p>
     </div>
 
-    <div class="process-steps" role="list" aria-label="Étapes du processus">
+    <div class="process-steps" role="list" aria-label="Étapes du processus ARYAD Studio">
 
       <div class="process-step reveal" role="listitem" style="transition-delay:0.05s;">
         <div class="step-num" aria-label="Étape 1">01</div>
         <div class="step-title">Découverte</div>
         <p class="step-desc">
           Analyse du contexte, des objectifs métier et des contraintes techniques.
-          Alignement stratégique.
+          Alignement stratégique dès le premier échange.
         </p>
       </div>
 
@@ -376,7 +417,7 @@
         <div class="step-title">Architecture</div>
         <p class="step-desc">
           Conception de l'architecture système, choix technologiques
-          et planification des composants IA.
+          et planification des composants IA adaptés à votre budget et vos besoins.
         </p>
       </div>
 
@@ -385,7 +426,7 @@
         <div class="step-title">Modélisation IA</div>
         <p class="step-desc">
           Développement, entraînement et évaluation des modèles d'IA
-          sur vos données réelles.
+          sur vos données réelles — avec transparence et explainabilité.
         </p>
       </div>
 
@@ -394,7 +435,7 @@
         <div class="step-title">Développement</div>
         <p class="step-desc">
           Intégration des modèles dans les applications, développement
-          des interfaces et des APIs.
+          des interfaces et des APIs — livraisons itératives et feedback continu.
         </p>
       </div>
 
@@ -403,7 +444,7 @@
         <div class="step-title">Déploiement &amp; Scale</div>
         <p class="step-desc">
           Mise en production cloud, monitoring, optimisation continue
-          et montée en charge.
+          et montée en charge — accompagnement post-lancement inclus.
         </p>
       </div>
 
@@ -413,17 +454,25 @@
 
 <div class="divider"></div>
 
+<!-- ════════════════════════════════════════════
+     TECHNOLOGIES
+════════════════════════════════════════════ -->
 <section id="technologies" aria-labelledby="tech-title">
   <div class="container">
 
     <div class="reveal">
       <p class="section-eyebrow">Stack technique</p>
-      <h2 class="section-title" id="tech-title">Technologies</h2>
+      <h2 class="section-title" id="tech-title">
+        Technologies que nous maîtrisons
+      </h2>
+      <p class="section-body">
+        Nous utilisons les meilleures technologies open source et cloud pour construire
+        des systèmes fiables, maintenables et évolutifs.
+      </p>
     </div>
 
     <div class="reveal" style="transition-delay:0.1s;">
-
-      <div class="tech-categories" role="group" aria-label="Filtrer par catégorie">
+      <div class="tech-categories" role="group" aria-label="Filtrer par catégorie de technologie">
         {% if technologies %}
         {% for cat in technologies.categories %}
         <button class="tech-cat-btn {% if cat.key == 'all' %} active {% endif%}"
@@ -433,11 +482,13 @@
         {% endif%}
       </div>
 
-      <div class="tech-grid" id="techGrid" role="list" aria-label="Technologies">
+      <div class="tech-grid" id="techGrid" role="list" aria-label="Technologies ARYAD Studio">
         {% if technologies %}
         {% for tech in technologies.items %}
         <div class="tech-item reveal" data-cat="{{tech.cat}}" role="listitem" style="transition-delay:0.05s;">
-          <div class="tech-icon-wrap" aria-hidden="true"><img height="100%" style="object-fit: contain;" src="{{tech.icon.url}}" alt="" srcset=""></div>
+          <div class="tech-icon-wrap" aria-hidden="true">
+            <img height="100%" style="object-fit: contain;" src="{{tech.icon.url}}" alt="{{tech.name}}" loading="lazy">
+          </div>
           <div class="tech-name">{{tech.name}}</div>
         </div>
         {% endfor %}
@@ -447,6 +498,9 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════ -->
 <section id="cta" aria-labelledby="cta-title">
   <div class="container">
     <div class="cta-block reveal">
@@ -456,20 +510,21 @@
       </p>
 
       <h2 class="section-title" id="cta-title">
-        Construisons ensemble des systèmes intelligents
-        qui transforment votre entreprise.
+        Construisons ensemble le système intelligent
+        qui transformera votre activité.
       </h2>
 
       <p class="section-body">
-        Vous avez un projet ambitieux ou un défi métier à résoudre par l'IA ?
-        Discutons-en et explorons les opportunités ensemble.
+        Vous avez un projet IA, une idée à concrétiser ou un problème à résoudre ?
+        Que vous soyez entrepreneur solo, PME, startup ou grande entreprise —
+        discutons-en. Première consultation gratuite, réponse sous 24h.
       </p>
 
       <br>
 
-      <a href="mailto:aryadacademie@gmail.com"
+      <a href="mailto:support@aryadstudio.com"
          class="cta-big"
-         aria-label="Planifier un appel stratégique par email">
+         aria-label="Planifier un appel stratégique avec ARYAD Studio">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
           <path d="M2 4.5A1.5 1.5 0 013.5 3h11A1.5 1.5 0 0116 4.5v9a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 012 13.5v-9z"
                 stroke="currentColor" stroke-width="1.4"/>
@@ -478,12 +533,15 @@
         Planifier un appel stratégique
       </a>
 
-      <p class="cta-note">Réponse sous 24h · Première consultation gratuite</p>
+      <p class="cta-note">Réponse sous 24h &middot; Première consultation gratuite &middot; Sans engagement</p>
 
     </div>
   </div>
 </section>
 
+<!-- ════════════════════════════════════════════
+     SCROLL TOP
+════════════════════════════════════════════ -->
 <button class="scroll-top" id="scrollTop" aria-label="Retour en haut de page" title="Retour en haut">
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
     <path d="M9 14V4M4 8l5-5 5 5" stroke="currentColor" stroke-width="1.8"
@@ -491,19 +549,28 @@
   </svg>
 </button>
 
+<!-- ════════════════════════════════════════════
+     CHATBOT
+════════════════════════════════════════════ -->
 <div class="chatbot-wrapper" id="chatbotWrapper" aria-live="polite">
 
   <button class="chatbot-toggle" id="chatbotToggle"
-          aria-label="Ouvrir le chat" aria-expanded="false"
+          aria-label="Ouvrir le chat avec l'assistant ARYAD" aria-expanded="false"
           aria-controls="chatbotPanel">
     <span class="chatbot-toggle-icon chatbot-toggle-icon--open" aria-hidden="true">
-      <div style="height: 22px;width: 22px;">
-            <img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset="">
-          </div>
+      <div style="height: 22px;width: 22px;overflow: hidden;border-radius: 100%;">
+        <img height="22" width="22" style="object-fit: cover;" src="{% static 'imgs/bot_.avif' %}" alt="" srcset="">
+      </div>
     </span>
     <span class="chatbot-toggle-icon chatbot-toggle-icon--close" aria-hidden="true" style="display:none;">
-      <div style="height: 32px;display: flex;align-items: center;">
-        <img height="100%" style="object-fit: contain;" src="{% static 'imgs/symbole-aryad.png' %}" alt="" srcset="">
+      <div style="height: 32px;display: flex;align-items: center;border-radius:100%;overflow:hidden;">
+        <img src="/static/imgs/symbole-aryad-ai-black_of.avif"
+     width="32" height="32"
+     srcset="/static/imgs/symbole-aryad-ai-black_of.avif 1x,
+             /static/imgs/symbole-aryad-ai-black_of.avif 2x"
+     fetchpriority="high"
+     alt="ARYAD"
+     style="object-fit:contain;">
       </div>
     </span>
     <span class="chatbot-label">Aryad AI</span>
@@ -511,17 +578,17 @@
   </button>
 
   <div class="chatbot-panel" id="chatbotPanel" role="dialog"
-       aria-label="Assistant ARYAD" aria-modal="false" hidden>
+       aria-label="Assistant ARYAD Studio" aria-modal="false" hidden>
 
     <div class="chatbot-header">
       <div class="chatbot-header-info">
         <div class="chatbot-avatar" aria-hidden="true">
-          <div style="height: 32px;width: 32px;">
-            <img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset="">
+          <div style="height: 32px;width: 32px;overflow: hidden;border-radius: 100%;">
+            <img height="32" width="32" style="object-fit: cover;" src="{% static 'imgs/bot_.avif' %}" alt="" srcset="">
           </div>
         </div>
         <div>
-          <div class="chatbot-name">Assistant ARYAD</div>
+          <div class="chatbot-name">Assistant ARYAD Studio</div>
           <div class="chatbot-status">
             <span class="chatbot-status-dot" aria-hidden="true"></span>
             En ligne
@@ -535,24 +602,27 @@
       </button>
     </div>
 
-    <div class="chatbot-messages" id="chatbotMessages" role="log" aria-label="Conversation">
+    <div class="chatbot-messages" id="chatbotMessages" role="log" aria-label="Conversation avec l'assistant ARYAD">
       <div class="chatbot-msg chatbot-msg--bot">
         <div class="chatbot-msg-avatar" aria-hidden="true">
-            <div style="height: 24px;width: 24px;">
-            <img height="100%" style="object-fit: contain;" src="{% static 'imgs/bot.png' %}" alt="" srcset="">
+          <div style="height: 24px;width: 24px;overflow: hidden;border-radius: 100%;">
+            <img height="24" width="24" style="object-fit: cover;" src="{% static 'imgs/bot_.avif' %}" alt="" srcset="">
           </div>
         </div>
         <div class="chatbot-msg-bubble">
-          Bonjour 👋 Je suis l'assistant ARYAD.<br>
+          Bonjour ! Je suis l'assistant ARYAD Studio.<br>
           Comment puis-je vous aider aujourd'hui ?
         </div>
       </div>
-      <div class="chatbot-suggestions" id="chatbotSuggestions" aria-label="Suggestions">
-        <button class="chatbot-chip" onclick="sendSuggestion(this)">Voir les solutions IA</button>
-        <button class="chatbot-chip" onclick="sendSuggestion(this)">Planifier un appel</button>
-        <button class="chatbot-chip" onclick="sendSuggestion(this)">En savoir plus sur AryadRH</button>
+      <div class="chatbot-suggestions" id="chatbotSuggestions" aria-label="Suggestions de questions">
+        <button class="chatbot-chip" >Voir les solutions IA</button>
+        <button class="chatbot-chip" >Planifier un appel</button>
+        <button class="chatbot-chip" >En savoir plus sur AryadRH</button>
+        <button class="chatbot-chip" >Tarifs et devis</button>
       </div>
     </div>
+
+
 
     <div class="chatbot-input-wrap">
       <input
@@ -560,11 +630,11 @@
         id="chatbotInput"
         class="chatbot-input"
         placeholder="Écrivez votre message..."
-        aria-label="Message"
+        aria-label="Message pour l'assistant ARYAD"
         autocomplete="off"
         maxlength="300"
       >
-      <button class="chatbot-send" id="chatbotSend" aria-label="Envoyer">
+      <button class="chatbot-send" id="chatbotSend" aria-label="Envoyer le message">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M14 2L2 7l5 1.5L8.5 14 14 2z"
                 stroke="currentColor" stroke-width="1.5"
@@ -575,5 +645,4 @@
 
   </div>
 </div>
-
 {% endblock content %}

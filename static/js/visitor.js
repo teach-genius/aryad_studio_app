@@ -1,20 +1,3 @@
-/**
- * visitor.js — ARYAD Visitor Tracking & Chat API
- * -----------------------------------------------
- * Prérequis : window.ARYAD_CONFIG doit être défini dans base.html
- * avant le chargement de ce fichier :
- *
- *   <script>
- *     window.ARYAD_CONFIG = {
- *       botAvatarUrl: "{% static 'imgs/bot.png' %}",
- *     };
- *   </script>
- *
- * L'URL de l'image est résolue par Django dans le template HTML,
- * puis transmise au JS via window.ARYAD_CONFIG — les fichiers .js
- * statiques ne sont PAS traités par le moteur de templates Django.
- */
-
 (function () {
   'use strict';
 
@@ -26,26 +9,19 @@
   const CONV_KEY       = 'aryad_conversation_id';
   const REGISTER_URL   = '/api/visitor/register/';
   const CHAT_URL       = '/api/chat/';
-  const GEO_API_URL    = 'https://ipapi.co/json/';
   const GEO_TIMEOUT_MS = 4000;
 
-  // URL de l'avatar bot — fournie par base.html via window.ARYAD_CONFIG
-  function getBotAvatarUrl() {
-    return (window.ARYAD_CONFIG && window.ARYAD_CONFIG.botAvatarUrl)
-      ? window.ARYAD_CONFIG.botAvatarUrl
-      : '';
-  }
+  /* ═══════════════════════════════════════
+     AVATAR BOT
+     URL fournie par base.html via window.ARYAD_CONFIG
+     ═══════════════════════════════════════ */
 
-  // HTML de l'avatar bot (réutilisé dans appendMsg et showTyping)
   function botAvatarHTML() {
-    const url = getBotAvatarUrl();
-    if (!url) {
-      // Fallback : initiale "A" si l'image n'est pas configurée
-      return 'A';
-    }
-    return `<div style="height:24px;width:24px;">
-              <img height="100%" style="object-fit:contain;" src="${url}" alt="Bot ARYAD">
-            </div>`;
+    const url = "static/imgs/bot_.avif";
+    if (!url) return 'A';
+    return `<div style="height:24px;width:24px;border-radius:100%;overflow:hidden;">
+  <img height="24" width="24" style="object-fit:contain;" src="${url}" alt="Bot ARYAD">
+</div>`;
   }
 
   /* ═══════════════════════════════════════
@@ -72,8 +48,8 @@
 
   function getDeviceType() {
     const ua = navigator.userAgent;
-    if (/tablet|ipad|playbook|silk/i.test(ua))                         return 'tablet';
-    if (/mobile|android|iphone|ipod|blackberry|opera mini/i.test(ua))  return 'mobile';
+    if (/tablet|ipad|playbook|silk/i.test(ua))                        return 'tablet';
+    if (/mobile|android|iphone|ipod|blackberry|opera mini/i.test(ua)) return 'mobile';
     return 'desktop';
   }
 
@@ -124,16 +100,19 @@
   }
 
   /* ═══════════════════════════════════════
-     5. GÉOLOCALISATION via ipapi.co
+     5. GÉOLOCALISATION — proxy Django /api/geo/
      ═══════════════════════════════════════ */
 
   async function fetchGeo() {
     try {
       const controller = new AbortController();
       const tid = setTimeout(() => controller.abort(), GEO_TIMEOUT_MS);
-      const res = await fetch(GEO_API_URL, { signal: controller.signal });
+
+      const res = await fetch('/api/geo/', { signal: controller.signal });
       clearTimeout(tid);
+
       if (!res.ok) return {};
+
       const d = await res.json();
       return {
         country:      d.country_name || '',
@@ -220,21 +199,62 @@
 
   /* ═══════════════════════════════════════
      8. PATCH CHATBOT
-        Remplace les réponses statiques d'aryad.js
-        par de vrais appels à /api/chat/
-        et injecte l'avatar image bot.
+        Gère l'ouverture/fermeture du panel
+        + remplace les réponses statiques par /api/chat/
+        + injecte l'avatar image bot.
      ═══════════════════════════════════════ */
 
   function patchChatbot() {
-    const input    = document.getElementById('chatbotInput');
-    const sendBtn  = document.getElementById('chatbotSend');
-    const messages = document.getElementById('chatbotMessages');
+    const wrapper   = document.getElementById('chatbotWrapper');
+    const toggle    = document.getElementById('chatbotToggle');
+    const panel     = document.getElementById('chatbotPanel');
+    const closeBtn  = document.getElementById('chatbotClose');
+    const input     = document.getElementById('chatbotInput');
+    const sendBtn   = document.getElementById('chatbotSend');
+    const messages  = document.getElementById('chatbotMessages');
+    const iconOpen  = toggle ? toggle.querySelector('.chatbot-toggle-icon--open')  : null;
+    const iconClose = toggle ? toggle.querySelector('.chatbot-toggle-icon--close') : null;
+
     if (!input || !sendBtn || !messages) return;
 
     // ── Met à jour l'avatar bot initial dans le message de bienvenue ──
     document.querySelectorAll('.chatbot-msg--bot .chatbot-msg-avatar').forEach(el => {
       el.innerHTML = botAvatarHTML();
     });
+
+    /* ── Ouverture / Fermeture du panel ── */
+
+    let isPanelOpen = false;
+
+    function openPanel() {
+      isPanelOpen  = true;
+      panel.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+      if (iconOpen)  iconOpen.style.display  = 'none';
+      if (iconClose) iconClose.style.display = '';
+      scrollMessages();
+      const notif = toggle.querySelector('.chatbot-notif');
+      if (notif) notif.style.display = 'none';
+      // Focus sur l'input après ouverture
+      setTimeout(() => { if (input) input.focus(); }, 50);
+    }
+
+    function closePanel() {
+      isPanelOpen  = false;
+      panel.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      if (iconOpen)  iconOpen.style.display  = '';
+      if (iconClose) iconClose.style.display = 'none';
+    }
+
+    if (toggle)   toggle.addEventListener('click',  () => isPanelOpen ? closePanel() : openPanel());
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && isPanelOpen) closePanel();
+    });
+
+    /* ── Messages ── */
 
     function scrollMessages() {
       setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 50);
@@ -286,13 +306,15 @@
       if (t) t.remove();
     }
 
-    // Remplacer les event listeners existants (cloner les éléments)
+    /* ── Cloner input/send pour supprimer les anciens listeners ── */
+
     const newSend  = sendBtn.cloneNode(true);
     const newInput = input.cloneNode(true);
     sendBtn.parentNode.replaceChild(newSend,  sendBtn);
     input.parentNode.replaceChild(newInput, input);
 
-    // sendMessage utilise newInput directement — plus de référence à l'ancien input
+    /* ── Envoi de message ── */
+
     async function sendMessage(text) {
       const trimmed = (text || '').trim();
       if (!trimmed) return;
@@ -301,7 +323,7 @@
       if (suggestions) suggestions.style.display = 'none';
 
       appendMsg(trimmed, 'user');
-      newInput.value   = '';          // ← vide le bon élément
+      newInput.value   = '';
       newInput.focus();
       newSend.disabled = true;
       showTyping();
@@ -328,7 +350,10 @@
       if (e.key === 'Enter') { e.preventDefault(); sendMessage(newInput.value); }
     });
 
-    window.sendSuggestion = btn => sendMessage(btn.textContent);
+    window.sendSuggestion = btn => {
+      if (!isPanelOpen) openPanel();
+      sendMessage(btn.textContent);
+    };
   }
 
   /* ═══════════════════════════════════════
@@ -336,8 +361,19 @@
      ═══════════════════════════════════════ */
 
   document.addEventListener('DOMContentLoaded', () => {
-    registerVisitor();   // async — non bloquant
+    registerVisitor();
     patchChatbot();
+    // Chatbot toujours visible dès le chargement
+    const wrapper = document.getElementById('chatbotWrapper');
+    if (wrapper) wrapper.classList.add('visible');
+
+    // Chips chatbot
+    document.querySelectorAll('.chatbot-chip')
+      .forEach(el => el.addEventListener('click', () => sendSuggestion(el)));
+
+    // Liens menu mobile
+    document.querySelectorAll('.m-enu-mobile')
+      .forEach(el => el.addEventListener('click', closeMobile));
   });
 
 })();
