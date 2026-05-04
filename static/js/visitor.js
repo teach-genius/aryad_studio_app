@@ -104,28 +104,30 @@
      ═══════════════════════════════════════ */
 
   async function fetchGeo() {
-    try {
-      const controller = new AbortController();
-      const tid = setTimeout(() => controller.abort(), GEO_TIMEOUT_MS);
-
-      const res = await fetch('/api/geo/', { signal: controller.signal });
-      clearTimeout(tid);
-
-      if (!res.ok) return {};
-
-      const d = await res.json();
-      return {
-        country:      d.country_name || '',
-        country_code: d.country_code || '',
-        city:         d.city         || '',
-        region:       d.region       || '',
-        latitude:     d.latitude     || null,
-        longitude:    d.longitude    || null,
-      };
-    } catch (_) {
-      return {};
-    }
+  try {
+    const controller = new AbortController();
+    const tid = setTimeout(() => controller.abort(), GEO_TIMEOUT_MS);
+    const res = await fetch('/api/geo/', { signal: controller.signal });
+    clearTimeout(tid);
+    if (!res.ok) return {};
+    const d = await res.json();
+    return {
+      country:      d.country_name  || '',
+      country_code: d.country_code  || '',
+      city:         d.city          || '',
+      region:       d.region        || '',
+      zip:          d.zip           || '',
+      latitude:     d.latitude      || null,
+      longitude:    d.longitude     || null,
+      timezone:     d.timezone      || '',
+      isp:          d.isp           || '',
+      is_mobile:    d.is_mobile     || false,
+      is_proxy:     d.is_proxy      || false,
+    };
+  } catch (_) {
+    return {};
   }
+}
 
   /* ═══════════════════════════════════════
      6. REGISTER VISITOR
